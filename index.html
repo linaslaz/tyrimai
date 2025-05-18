@@ -4,15 +4,71 @@
   <meta charset="UTF-8">
   <title>Research – Params Optimization</title>
   <meta name="description" content="This document presents research results related to parameter optimization and their impact on strategy performance.">
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+    #searchBox {
+      margin-bottom: 1em;
+      padding: 5px;
+      font-size: 1em;
+    }
+  </style>
 </head>
 <body>
+  <input type="text" id="searchBox" placeholder="Search text...">
+
   <h1>Research: Params Optimization</h1>
   <p>This page provides data and visualizations related to the impact of limit and trend strategy params optimization on results.</p>
   <ul>
     <li><a href="rezultatai1.html">Link to Trend strategy Limit % optimization research.</a></li>
     <li><a href="rezultatai2.html">Link to Trend parameter optimization research.</a></li>
     <li><a href="rezultatai3.html">Link to Trend strategy Individual Limit % optimization research.</a></li>
-<!--    tyrimu rez1 ir rez2 publikavimo data 20250430-->
+    <!-- tyrimu rez1 ir rez2 publikavimo data 20250430 -->
   </ul>
+
+  <script>
+    function traverse(element, depth = 0) {
+      const indent = '  '.repeat(depth);
+      console.log(`${indent}<${element.tagName.toLowerCase()}>`);
+      for (let child of element.children) {
+        traverse(child, depth + 1);
+      }
+    }
+
+    function clearHighlights() {
+      const highlighted = document.querySelectorAll('.highlight');
+      highlighted.forEach(el => el.classList.remove('highlight'));
+    }
+
+    function searchDOMText(query) {
+      clearHighlights();
+      if (!query) return;
+
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (node.nodeValue.toLowerCase().includes(query.toLowerCase())) {
+          const span = document.createElement("span");
+          span.className = "highlight";
+          const matchText = node.nodeValue;
+          span.textContent = matchText;
+          node.parentNode.replaceChild(span, node);
+        }
+      }
+    }
+
+    document.getElementById('searchBox').addEventListener('input', (e) => {
+      // Reload original DOM before searching again
+      location.reload(); // Optional: only needed if replacing text destructively
+      // If you want to avoid reload, a more advanced diffing method is needed
+    });
+
+    // Optional debug DOM dump
+    window.onload = () => {
+      console.log("DOM structure:");
+      traverse(document.body);
+    };
+  </script>
 </body>
 </html>
