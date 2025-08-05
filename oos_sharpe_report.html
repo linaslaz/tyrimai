@@ -26,17 +26,17 @@
     </style>
 </head>
 <body>
-    <h1>Sharpe Ratio Comparison: s0, s1, a1, x1, w1</h1>
+    
+<h2>Strategy Descriptions</h2>
+<ul>
+    <li><b>s0:</b> No filter</li>
+    <li><b>s1:</b> Trend filter (LinearRegSlope)</li> 
+    <li><b>a1:</b> Volatility filter (ATR)</li>
+    <li><b>x1:</b> Volatility filter (X avg TR)</li>
+    <li><b>w1:</b> Volatility filter (W avg TR)</li>
+</ul>
 
     <h2>OOS Sharpe per Period</h2>
-        <ul>
-        <li><b>s0:</b> No filter</li>
-        <li><b>s1:</b> Trend filter</li>
-        <li><b>a1:</b> Volatility filter (ATR)</li>
-        <li><b>x1:</b> Volatility filter (X avg TR)</li>
-        <li><b>w1:</b> Volatility filter (W avg TR)</li>
-      </ul>
-
     <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
